@@ -18,6 +18,7 @@ Route::get('/', function () {
 });
 
 Route::get('posts/{post}', function ($slug) {
+
     $path = __DIR__ . "/../resources/posts/{$slug}.html";
 
     if (!file_exists($path)) {
@@ -26,9 +27,8 @@ Route::get('posts/{post}', function ($slug) {
         return redirect('/');
     }
 
-    $post = file_get_contents($path);
-    return view('post', [
-        'post' => $post
-    ]);
+    $post = cache()->remember("posts.{$slug}", now()->addMinutes(45), fn() => file_get_contents($path));
+
+    return view('post', ['post' => $post]);
 
 })->where('post', '[A-z-]+');
