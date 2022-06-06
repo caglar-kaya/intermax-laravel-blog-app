@@ -6,6 +6,8 @@ use App\Models\Post;
 
 class PostController extends Controller
 {
+    // index, show, create, store, edit, update, destroy
+
     public function index()
     {
         return view('posts.index', [
