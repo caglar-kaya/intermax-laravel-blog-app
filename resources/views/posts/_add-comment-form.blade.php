@@ -29,7 +29,7 @@
             </div>
 
             <div class="flex justify-end mt-4">
-                <x-submit-button>Comment</x-submit-button>
+                <x-form.button>Comment</x-form.button>
             </div>
 
         </form>
